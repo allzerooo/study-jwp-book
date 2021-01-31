@@ -1,5 +1,6 @@
 package com.study.chapter2;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -34,5 +35,42 @@ class StringCalculatorTest {
         }
 
         assertEquals(";", separator);
+    }
+
+    @Test
+    @DisplayName("문자열에서 계산 결과 구하기")
+    void calcString() {
+        String str = "//;₩n1;2;3";
+
+        Pattern pattern = Pattern.compile("[/][/](.*?)[₩][n]");
+        Matcher matcher = pattern.matcher(str);
+
+        String separator = null;
+
+        while (matcher.find()) {
+            separator = matcher.group(1);
+        }
+
+        int sum = 0;
+
+        if (separator != null) {
+            String[] nums = str.substring(5).split(separator);
+            for (String num : nums) {
+                if (num.contains("-")) {
+                    throw new RuntimeException();
+                }
+                sum += Integer.parseInt(num);
+            }
+        } else {
+            String[] nums = str.split("[:,]");
+            for (String num : nums) {
+                if (num.contains("-")) {
+                    throw new RuntimeException();
+                }
+                sum += Integer.parseInt(num);
+            }
+        }
+
+        assertEquals(6, sum);
     }
 }
