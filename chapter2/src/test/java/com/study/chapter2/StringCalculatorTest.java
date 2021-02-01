@@ -11,6 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class StringCalculatorTest {
 
+    private StringCalculator stringCalculator;
+
+    @BeforeAll
+    void beforeAll() {
+        stringCalculator = new StringCalculator();
+    }
+
     @Test
     @DisplayName("구분자를 기준으로 문자열을 분리하기")
     void separateStringWithSeparator() {
