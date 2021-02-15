@@ -24,4 +24,9 @@ class StringCalculatorTest {
         assertEquals(0, stringCalculator.add(null));
         assertEquals(0, stringCalculator.add(""));
     }
+
+    @Test
+    void add_숫자하나() {
+        assertEquals(1, stringCalculator.add("1"));
+    }
 }
